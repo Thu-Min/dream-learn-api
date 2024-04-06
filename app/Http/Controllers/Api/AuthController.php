@@ -16,7 +16,7 @@ class AuthController extends Controller
 {
     public function socialRedirect($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->stateless()->redirect();
     }
 
     public function socialCallback($provider)
