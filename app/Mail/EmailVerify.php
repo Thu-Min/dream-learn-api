@@ -3,22 +3,24 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class EmailVerify extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $code;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($code)
     {
-        //
+        $this->code = $code;
     }
 
     /**
@@ -38,6 +40,9 @@ class EmailVerify extends Mailable
     {
         return new Content(
             view: 'mails.auth.email_verify',
+            with: [
+                'code' => $this->code,
+            ],
         );
     }
 

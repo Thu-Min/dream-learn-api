@@ -203,7 +203,7 @@
                             <center style="color:#ffffff;font-family:sans-serif;font-size:15px;">Verify Email</center>
                           </v:roundrect><![endif]-->
                             <a href="" class="button button--blue">
-                                123456
+                                {{ $code }}
                             </a>
                           </div>
                         </td>

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
 use App\Models\AuthProvider;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -51,8 +53,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function authProviders()
+    public function authProviders(): HasMany
     {
-        return $this->hasMany(AuthProvider::class,'user_id','id');
+        return $this->hasMany(AuthProvider::class, 'user_id', 'id');
     }
 }
