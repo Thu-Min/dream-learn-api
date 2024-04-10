@@ -5,16 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 
 Route::prefix('v1')->group(function () {
-    Route::get('/auth/{provider}/redirect', [AuthController::class, 'socialRedirect']);
-    Route::get('/auth/{provider}/callback', [AuthController::class, 'socialCallback']);
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/auth/{provider}/redirect', 'socialRedirect');
+        Route::get('/auth/{prodiver}/callback', 'socialCallback');
 
-    Route::post('/sign-up', [AuthController::class, 'signUp']);
-    Route::post('/sign-in', [AuthController::class, 'signIn']);
+        Route::post('/sign-up', 'signUp');
+        Route::post('/sign-in', 'signIn');
+    });
 
     Route::middleware(['auth:api'])->group(function () {
-        Route::get('/verify-email', [AuthController::class, 'requestVerifyEmail']);
-        Route::post('/verify-email', [AuthController::class, 'verifyEmail']);
+        Route::controller(AuthController::class)->group(function () {
+            Route::get('/verify-email', 'requestVerifyEmail');
+            Route::post('/verify-email', 'verifyEmail');
 
-        Route::get('/sign-out', [AuthController::class, 'signOut']);
+            Route::get('/sign-out', 'signOut');
+        });
     });
 });
