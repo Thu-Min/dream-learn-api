@@ -11,6 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.9",
+        "spatie/laravel-permission": "^6.4",
         "symfony/http-client": "^7.0",
         "symfony/mailgun-mailer": "^7.0"
     },
