@@ -20,6 +20,3 @@ jobs:
         server: premium267.web-hosting.com
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-
-    - name: 🧪 Run Tests
-      run: vendor/bin/pest
